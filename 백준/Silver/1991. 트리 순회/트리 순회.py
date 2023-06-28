@@ -1,31 +1,33 @@
-#import sys
-#sys.stdin = open('input.txt')
+
 
 N = int(input())
 
 def pre_order(tree, start):
+    left, right = tree[ord(start) - 65]
     pre_nodes = start
-    if tree[ord(start)-65][0] != '.':
-        pre_nodes += pre_order(tree, tree[ord(start)-65][0])
-    if tree[ord(start)-65][1] != '.':
-        pre_nodes += pre_order(tree, tree[ord(start)-65][1])
+    if left != '.':
+        pre_nodes += pre_order(tree, left)
+    if right != '.':
+        pre_nodes += pre_order(tree, right)
     return pre_nodes
 
 def in_order(tree, start):
+    left, right = tree[ord(start) - 65]
     in_nodes = ''
-    if tree[ord(start)-65][0] != '.':
-        in_nodes += in_order(tree, tree[ord(start)-65][0])
+    if left != '.':
+        in_nodes += in_order(tree, left)
     in_nodes += start
-    if tree[ord(start)-65][1] != '.':
-        in_nodes += in_order(tree, tree[ord(start)-65][1])
+    if right != '.':
+        in_nodes += in_order(tree, right)
     return in_nodes
 
 def post_order(tree, start):
+    left, right = tree[ord(start) - 65]
     post_nodes = ''
-    if tree[ord(start)-65][0] != '.':
-        post_nodes += post_order(tree, tree[ord(start)-65][0])
-    if tree[ord(start)-65][1] != '.':
-        post_nodes += post_order(tree, tree[ord(start)-65][1])
+    if left != '.':
+        post_nodes += post_order(tree, left)
+    if right != '.':
+        post_nodes += post_order(tree, right)
     post_nodes += start
     return post_nodes
 
